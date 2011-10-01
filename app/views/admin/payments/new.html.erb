@@ -6,7 +6,7 @@
   <div class="span8">
     <%= form_for [:admin, @partner, @payment] do |f| %>
 
-    <%#= render :partial => 'shared/form_errors', :locals => {:entity => @transaction} %>
+    <%= render :partial => 'shared/form_errors', :locals => {:entity => @payment} %>
 
     <p>
       <%= f.label :barcode_identifer, "Barcode" %>

@@ -1,0 +1,10 @@
+<% unless entity.errors.empty? %>
+<div class="flash-error">
+  Please correct the following <%= pluralize_without_count(entity.errors.count, 'error') %>:<br /><br />
+	<ul>	
+	<% entity.errors.full_messages.each do |err| %>
+		<li><strong><%= err %></strong></li>
+	<% end %>
+	</ul>
+</div>
+<% end %>

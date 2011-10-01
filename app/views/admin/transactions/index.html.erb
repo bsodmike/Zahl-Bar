@@ -18,7 +18,7 @@
       <tr>
         <td><%= r.id %></td>
         <td><%= r.barcode %></td>
-        <td><%= r.amount_cts %></td>
+        <td><%= "%.2f" % (r.amount_cts.to_f/100) %></td>
         <td><%= Customer.where(:id => r.customer_id).last.email %></td>
         <td><%= r.state %></td>
         <td><%= link_to "View", admin_online_shop_transaction_path(@shop, r) %></td>
