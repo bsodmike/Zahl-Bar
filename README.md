@@ -1,33 +1,22 @@
-# CoreApp
-This is a Rails 3.1 app generated with pre-configured TDD/BDD stack with Guard + Spork + RSpec + Cucumber
+# zbar_mike
 
-## How it was created...
+Developed in under 9 hours to fulfil a certain specification; this is still a work in progress.
 
-The following was performed on a newly generated 3.1 app:
+## Running in development...
 
-    rails new CoreApp -T --skip-bundle
-    rails g rspec:install
-    rails g cucumber:install
-    spork --bootstrap
-    guard init spork
-    guard init rspec
-    guard init cucumber
-    rails g controller Public index --helper=false --assets=false --controller-specs=false --view-specs=false
-    
-## Usage 
+1. Run `bundle` to ensure you have the required dependencies
 
-Fork, clone, checkout this repo and perform the following to setup a master branch of your preference, we'll be creating it as a [new empty branch](http://book.git-scm.com/5_creating_new_empty_branches.html).
+2. Run the migrations, `rake db:migrate`
 
-    git symbolic-ref HEAD refs/heads/master
-    rm .git/index 
-    git clean -fdx 
-    git cherry-pick f18bf10
-    touch README
-    git add -A 
-    git commit -m 'initial commit'
-    git rebase -i HEAD^
+3. Two rake tasks have been created to assist in (a) creating an admin user account and (b) seeing the database with sample data in lieu of the pending CRUD controller/views that are missing in the app.
 
-The last step above will put you into interactive rebase of this commit, it's advised you rename it with a commit message of your choice.
+4. Once both rake tasks have been executed, perform the following.
+
+    User.last.update_attribute(:role,"admin")
+
+5. [Download and install wkhtmltopdf](http://code.google.com/p/wkhtmltopdf/) and place the binary at `/usr/local/bin` &mdash; this is needed to allow downloading of PDFs from the application.
+
+6. Fire up the development server via `rails s` and visit [http://localhost:3000](http://localhost:3000)
 
 ## License
-CoreApp is Copyright (c) 2010-2011 [Michael de Silva](http://www.bsodmike.com) ([@bsodmike](https://twitter.com/#!/bsodmike) &amp; [G+](https://plus.google.com/102197309611185157885/posts)), and is released under MIT-LICENSE.
+zbar_mike is Copyright (c) 2011 [Michael de Silva](http://www.bsodmike.com) ([@bsodmike](https://twitter.com/#!/bsodmike) &amp; [G+](https://plus.google.com/102197309611185157885/posts)), and is released under MIT-LICENSE.
