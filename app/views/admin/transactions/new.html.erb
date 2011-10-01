@@ -1,0 +1,25 @@
+<h2>Create Transaction for <%= @shop.name %></h2>
+
+<br/>
+
+<div class="row">
+  <div class="span8">
+    <%= form_for [:admin, @shop, @transaction] do |f| %>
+
+    <%#= render :partial => 'shared/form_errors', :locals => {:entity => @transaction} %>
+
+    <p>
+      <%= f.label :customer_id , "Customer" %>
+      <%= f.select :customer_id, Customer.all.collect {|r| [r.email, r.id]},  {:include_blank => 'Select Customer'} , {:style => "width:220px", :class  => "select-box"} %>
+    </p>
+    <p>
+      <%= f.label :amount_cts, "Amount" %>
+      <%= f.text_field :amount_cts %>
+    </p>
+
+    <p>
+      <%= submit_tag "Create" %> or <%= link_to "Cancel", admin_online_shops_path %>
+    </p>
+    <% end %>
+  </div>
+</div>  

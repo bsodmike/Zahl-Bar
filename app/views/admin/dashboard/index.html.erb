@@ -1,2 +1,25 @@
-<h1>Admin::Dashboard#index</h1>
-<p>Find me in app/views/admin/dashboard/index.html.erb</p>
+<h1>Zahlbar Admin Dashboard ~ <%= %w[Willkommen Welcome].sample %>!</h1>
+
+<br/>
+
+<h3>Transactions Status Overview</h3>
+<div class="row">
+  <div class="span6">
+    <table class="zebra-striped">
+      <tbody>
+        <tr>
+          <td>Done</td>
+          <td><%= percentage_transactions("done") %>% (<%= Transaction.where(:state => "done").count %>)</td>
+        </tr>    
+        <tr>
+          <td>Pending</td>
+          <td><%= percentage_transactions("pending") %>% (<%= Transaction.where(:state => "pending").count %>)</td>
+        </tr>
+        <tr>
+          <td>Cancelled</td>
+          <td><%= percentage_transactions("cancelled") %>% (<%= Transaction.where(:state => "cancelled").count %>)</td>
+        </tr>       
+      </tbody>
+    </table>
+  </div>
+</div>

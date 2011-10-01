@@ -1,0 +1,21 @@
+<h2>Make Payment (Partner: <%= @partner.name %>)</h2>
+
+<br/>
+
+<div class="row">
+  <div class="span8">
+    <%= form_for [:admin, @partner, @payment] do |f| %>
+
+    <%#= render :partial => 'shared/form_errors', :locals => {:entity => @transaction} %>
+
+    <p>
+      <%= f.label :barcode_identifer, "Barcode" %>
+      <%= f.text_field :barcode_identifer %>
+    </p>
+
+    <p>
+      <%= submit_tag "Make Payment" %> or <%= link_to "Cancel", admin_offline_partners_path %>
+    </p>
+    <% end %>
+  </div>
+</div>

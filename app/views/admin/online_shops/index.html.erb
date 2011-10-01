@@ -1,0 +1,24 @@
+<h1>Select Online Shop to Create Transaction</h1>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Shop Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shops.each do |r| %>
+      <tr>
+        <td><%= r.id %></td>
+        <td><%= r.name %></td>
+        <td>
+          <%= link_to "Create Transaction", new_admin_online_shop_transaction_path(r) %> |
+          <%= link_to "View Transactions", admin_online_shop_transactions_path(r) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

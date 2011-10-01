@@ -1,0 +1,30 @@
+<h1><%= @shop.name %>: Transactions</h1>
+
+<br/>
+
+<table class="zebra-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Barcode</th>
+      <th>Amount (USD)</th>
+      <th>Customer Email</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @transactions.each do |r| %>
+      <tr>
+        <td><%= r.id %></td>
+        <td><%= r.barcode %></td>
+        <td><%= r.amount_cts %></td>
+        <td><%= Customer.where(:id => r.customer_id).last.email %></td>
+        <td><%= r.state %></td>
+        <td><%= link_to "View", admin_online_shop_transaction_path(@shop, r) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

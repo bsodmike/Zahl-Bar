@@ -1,0 +1,23 @@
+<h1><%= @shop.name %>: Transaction #<%= @transaction.id %></h1>
+<h3>Customer email: <%= Customer.where(:id => @transaction.customer_id).last.email %></h3>
+
+<br/>
+
+<table class="zebra-striped">
+  <tbody>
+    <tr>
+      <td><strong>Barcode</strong>:</td>
+      <td><%= @transaction.barcode %></td>
+    </tr>    
+    <tr>
+      <td><strong>Amount</strong> (USD):</td>
+      <td><%= @transaction.amount_cts %></td>
+    </tr>
+    <tr>
+      <td><strong>Due Date (dd-mm-yyy)</strong>:</td>
+      <td><%= @transaction.due_date.strftime('%d-%m-%Y') %></td>
+    </tr>         
+  </tbody>
+</table>
+
+<%= link_to "Download PDF", admin_online_shop_transaction_path(@shop, @transaction, :format => :pdf) %>

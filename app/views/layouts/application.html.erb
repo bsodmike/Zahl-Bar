@@ -32,21 +32,28 @@
 <div class="topbar" >
   <div class="topbar-inner">
     <div class="container">
-      <a class="brand" href="#">Bootstrap</a>
+      <a class="brand" href="#">Zahlbar</a>
       <ul class="nav">
-        <li class="active"><a href="#overview">Overview</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#grid-system">Grid</a></li>
-        <li><a href="#layouts">Layouts</a></li>
-        <li><a href="#typography">Type</a></li>
-        <li><a href="#media">Media</a></li>
-        <li><a href="#tables">Tables</a></li>
-        <li><a href="#forms">Forms</a></li>
-        <li><a href="#navigation">Navigation</a></li>
-        <li><a href="#alerts">Alerts</a></li>
-        <li><a href="#popovers">Popovers</a></li>
-        <li><a href="#javascript">Javascript</a></li>
-        <li><a href="#less">Less</a></li>
+        <% if request.env['PATH_INFO'] == "/admin" %>  
+          <li class="active">
+        <% else %>
+          <li>  
+        <% end %>  
+          <%= link_to "Dashboard", admin_root_path %></li>
+          
+        <% if request.env['PATH_INFO'] == "/admin/online_shops" %>  
+          <li class="active">
+        <% else %>
+          <li>  
+        <% end %>
+          <%= link_to "Create Transaction", admin_online_shops_path %></li>
+        
+        <% if request.env['PATH_INFO'] == "/admin/offline_partners" %>  
+          <li class="active">
+        <% else %>
+          <li>  
+        <% end %>
+          <%= link_to "Make a Payment", admin_offline_partners_path %></li>        
       </ul>
     </div>
   </div>
@@ -61,9 +68,14 @@
       <div class="span4"></div>
       <div class="span4">
         <p>
-          <% if current_user %>
+          <% if current_user && current_user.admin? %>
             Logged in as <%= current_user.email %>.<br/>  
             Not you? <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          <% elsif current_user.role == 'visitor' %>
+            <strong>Visitor</strong> Logged in as <%= current_user.email %>.<br/>  
+            Not you? <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>          
+          <% else %>
+            Authorised Personnel Only<br/><%= link_to "Sign in", admin_root_path %>
           <% end %>
         </p>
       </div>
@@ -72,34 +84,33 @@
 </div>
 
 <br/>
-
-<div class="container-fluid">
+<% if current_user && current_user.admin? & current_user.active? %>
+  <div class="container-fluid">
+  
   <div class="sidebar">
     <div class="well">
-      <h5>Sidebar</h5>
+      <h3>Online Shops</h3>
       <ul>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li><%= link_to "Create Transaction", admin_online_shops_path %></li>
       </ul>
-      <h5>Sidebar</h5>
+      
+      <h3>Offline-Partners</h3>
       <ul>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li><%= link_to "Make Payment", admin_offline_partners_path %></li>        
       </ul>
-      <h5>Sidebar</h5>
+
+      <h3>Manage Resources</h3>
+      <p>TODO! Currently loaded via rake task</p>
       <ul>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li><%= link_to "Manage Customers", "" %></li>
+        <li><%= link_to "Manage Online Shops", "" %></li>
+        <li><%= link_to "Manage Offline Providers", "" %></li>
       </ul>
     </div>
   </div>
-
+<% else %>
+  <div class="container">
+<% end  %>
   <div class="content">
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, :id => "flash_#{name}", :class => "alert-message #{name}" %>
