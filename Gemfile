@@ -15,6 +15,7 @@ gem 'cancan'
 gem 'devise'
 gem 'vidibus-routing_error'
 gem 'kaminari'
+gem 'wicked_pdf'
 gem 'rspec-rails', :group => [:development, :test]
 gem 'pry', :group => [:development, :test]
 

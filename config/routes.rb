@@ -1,8 +1,11 @@
 CoreApp::Application.routes.draw do
-  devise_for :users
-
-  get "public/index"
 
   root :to => 'public#index'
+  devise_for :users, :path => "login"
+
+  namespace :admin do
+    root :to => 'dashboard#index'
+
+  end
 
 end
