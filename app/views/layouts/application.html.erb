@@ -10,22 +10,125 @@
     
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
+  <script src="http://autobahn.tablesorter.com/jquery.tablesorter.min.js"></script>
+  <script>$(function () { prettyPrint() })</script>
+  <script src="javascripts/bootstrap-modal.js"></script>
+  <script src="javascripts/bootstrap-alerts.js"></script>
+  <script src="javascripts/bootstrap-dropdown.js"></script>
+  <script src="javascripts/bootstrap-scrollspy.js"></script>
+  <script src="javascripts/bootstrap-tabs.js"></script>
+  <script src="javascripts/bootstrap-twipsy.js"></script>
+  <script src="javascripts/bootstrap-popover.js"></script>
   <%= csrf_meta_tags %>
   <%= yield(:head) %>
+<style>
+.quickstart [class*="span"]{height:20px!important;padding:45px 20px 26px!important}
+</style>
 </head>
 <body>
 
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
+<!-- Topbar
+================================================== -->
+<div class="topbar" >
+  <div class="topbar-inner">
+    <div class="container">
+      <a class="brand" href="#">Bootstrap</a>
+      <ul class="nav">
+        <li class="active"><a href="#overview">Overview</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#grid-system">Grid</a></li>
+        <li><a href="#layouts">Layouts</a></li>
+        <li><a href="#typography">Type</a></li>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#tables">Tables</a></li>
+        <li><a href="#forms">Forms</a></li>
+        <li><a href="#navigation">Navigation</a></li>
+        <li><a href="#alerts">Alerts</a></li>
+        <li><a href="#popovers">Popovers</a></li>
+        <li><a href="#javascript">Javascript</a></li>
+        <li><a href="#less">Less</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<%= yield %>
+<!-- Quickstart options
+================================================== -->
+<div class="quickstart">
+  <div class="container">
+    <div class="row">
+      <div class="span4"></div>
+      <div class="span4"></div>
+      <div class="span4">
+        <p>
+          <% if current_user %>
+            Logged in as <%= current_user.email %>.<br/>  
+            Not you? <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+          <% end %>
+        </p>
+      </div>
+    </div><!-- /row -->
+  </div>
+</div>
 
-<%= "Application Time: #{Time.now.strftime("%D @ %H%M %z")}" if Rails.env.development? %>
-<%= debug(params) if Rails.env.development? %>
-<%= debug(session) if Rails.env.development? %>
-<script>//<![CDATA[
+<br/>
+
+<div class="container-fluid">
+  <div class="sidebar">
+    <div class="well">
+      <h5>Sidebar</h5>
+      <ul>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+      <h5>Sidebar</h5>
+      <ul>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+      <h5>Sidebar</h5>
+      <ul>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="content">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}", :class => "alert-message #{name}" %>
+    <% end %>
   
+    <%= yield %>
+    
+  </div>
+</div><!-- /container -->
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+      Bootstrap template designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
+      Copyright &copy; 2011 Barzahlen, and is released under MIT-LICENSE.
+    </p>
+    <p>
+      <%= "Application Time: #{Time.now.strftime("%D @ %H%M %z")}" if Rails.env.development? %>
+      <%= debug(params) if Rails.env.development? %>
+      <%= debug(session) if Rails.env.development? %>
+    </p>
+  </div>
+</footer>
+
+<script>//<![CDATA[
+
 //]]></script>
 <%= yield :pre_body_close %>
 </body>
