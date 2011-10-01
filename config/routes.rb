@@ -1,9 +1,5 @@
 CoreApp::Application.routes.draw do
 
-  get "payments/index"
-
-  get "transaction_create/index"
-
   root :to => 'public#index'
   devise_for :users, :path => "login"
 
