@@ -1,7 +1,7 @@
 class Admin::TransactionsController < AdminController
   def index
     @shop = OnlineShop.find(params[:online_shop_id])
-    @transactions = Transaction.all
+    @transactions = @shop.transactions.all
   end
   
   def new
