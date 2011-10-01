@@ -33,28 +33,30 @@
   <div class="topbar-inner">
     <div class="container">
       <a class="brand" href="#">Zahlbar</a>
-      <ul class="nav">
-        <% if request.env['PATH_INFO'] == "/admin" %>  
-          <li class="active">
-        <% else %>
-          <li>  
-        <% end %>  
-          <%= link_to "Dashboard", admin_root_path %></li>
+      <% if current_user && current_user.admin? %>
+        <ul class="nav">
+          <% if request.env['PATH_INFO'] == "/admin" %>  
+            <li class="active">
+          <% else %>
+            <li>  
+          <% end %>  
+            <%= link_to "Dashboard", admin_root_path %></li>
           
-        <% if request.env['PATH_INFO'] == "/admin/online_shops" %>  
-          <li class="active">
-        <% else %>
-          <li>  
-        <% end %>
-          <%= link_to "Create Transaction", admin_online_shops_path %></li>
+          <% if request.env['PATH_INFO'] == "/admin/online_shops" %>  
+            <li class="active">
+          <% else %>
+            <li>  
+          <% end %>
+            <%= link_to "Create Transaction", admin_online_shops_path %></li>
         
-        <% if request.env['PATH_INFO'] == "/admin/offline_partners" %>  
-          <li class="active">
-        <% else %>
-          <li>  
+          <% if request.env['PATH_INFO'] == "/admin/offline_partners" %>  
+            <li class="active">
+          <% else %>
+            <li>  
+          <% end %>
+            <%= link_to "Make a Payment", admin_offline_partners_path %></li>        
+        </ul>
         <% end %>
-          <%= link_to "Make a Payment", admin_offline_partners_path %></li>        
-      </ul>
     </div>
   </div>
 </div>
@@ -71,7 +73,7 @@
           <% if current_user && current_user.admin? %>
             Logged in as <%= current_user.email %>.<br/>  
             Not you? <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-          <% elsif current_user.role == 'visitor' %>
+          <% elsif current_user && current_user.role == 'visitor' %>
             <strong>Visitor</strong> Logged in as <%= current_user.email %>.<br/>  
             Not you? <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>          
           <% else %>
