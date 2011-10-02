@@ -4,7 +4,7 @@ Developed in under 9 hours to fulfil a certain specification; this is still a wo
 
 ## Running in development...
 
-1. Run `bundle` to ensure you have the required dependencies
+1. Run `bundle install --without=production` to ensure you have the required dependencies.  This will create a `.bundle/config` file which will always force the skipping of any gems listed in the production group &mdash; this is done to skip the need for mysql as defined in the Gemfile.
 
 2. Run the migrations, `rake db:migrate`
 
