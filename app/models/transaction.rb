@@ -9,7 +9,8 @@ class Transaction < ActiveRecord::Base
   attr_accessor :amount
   
   validates_presence_of :customer_id
-  validates_presence_of :online_shop_id  
+  validates_presence_of :online_shop_id
+  validates :barcode, :uniqueness => true
   validates :amount, :numericality => true
   
   def set_due_date
@@ -17,7 +18,9 @@ class Transaction < ActiveRecord::Base
   end
   
   def generate_barcode
-    self.barcode = "%013d" % Random.new.rand((10 ** 12)...(10 ** 13)) # save as string in DB
+    begin
+      self.barcode = "%013d" % Random.new.rand((10 ** 12)...(10 ** 13))
+    end while Transaction.exists?(:barcode => self.barcode) 
   end
 
   def amount_to_cents

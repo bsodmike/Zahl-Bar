@@ -1,3 +1,25 @@
+<% content_for :head do %>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Transaction Status');
+    data.addColumn('number', 'Count');
+    data.addRows(3);
+    data.setValue(0, 0, 'Pending');
+    data.setValue(0, 1, <%= Transaction.where(:state => "pending").count %>);
+    data.setValue(1, 0, 'Done');
+    data.setValue(1, 1, <%= Transaction.where(:state => "done").count %>);
+    data.setValue(2, 0, 'Cancelled');
+    data.setValue(2, 1, <%= Transaction.where(:state => "cancelled").count %>);
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, {width: 450, height: 300, title: 'Transactions Overview as Percentage'});
+  }
+</script>
+<% end %>
 <h1>Zahlbar Admin Dashboard ~ <%= %w[Willkommen Welcome].sample %>!</h1>
 
 <br/>
@@ -22,4 +44,5 @@
       </tbody>
     </table>
   </div>
+  <div class="span6" id="chart_div"></div>
 </div>
