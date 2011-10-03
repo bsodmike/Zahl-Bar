@@ -12,7 +12,9 @@ Developed in under 9 hours to fulfil a certain specification; this is still a wo
 
 4. Once both rake tasks have been executed, perform the following.
 
-    User.last.update_attribute(:role,"admin")
+```ruby
+User.last.update_attribute(:role,"admin")
+```
 
 5. [Download and install wkhtmltopdf](http://code.google.com/p/wkhtmltopdf/) and place the binary at `/usr/local/bin` &mdash; this is needed to allow downloading of PDFs from the application.
 
