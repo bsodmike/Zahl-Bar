@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Zahl-bar : Developed in under 9 hours to fulfil a certain specification as part of an interview with Bar Zahlen (Zerebro Internet, Berlin)" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Zahl-bar</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/bsodmike/Zahl-Bar">Fork Me on GitHub</a>
+
+          <h1 id="project_title">Zahl-bar</h1>
+          <h2 id="project_tagline">Developed in under 9 hours to fulfil a certain specification as part of an interview with Bar Zahlen (Zerebro Internet, Berlin)</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/bsodmike/Zahl-Bar/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/bsodmike/Zahl-Bar/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>zbar_mike</h1>
+
+<p>Developed in under 9 hours to fulfil a certain specification; this is still a work in progress.</p>
+
+<h2>Running in development...</h2>
+
+<ol>
+<li><p>Run <code>bundle install --without=production</code> to ensure you have the required dependencies.  This will create a <code>.bundle/config</code> file which will always force the skipping of any gems listed in the production group — this is done to skip the need for mysql as defined in the Gemfile.</p></li>
+<li><p>Run the migrations, <code>rake db:migrate</code></p></li>
+<li><p>Two rake tasks have been created to assist in (a) creating an admin user account and (b) seeing the database with sample data in lieu of the pending CRUD controller/views that are missing in the app.</p></li>
+<li><p>Once both rake tasks have been executed, perform <code>User.last.update_attribute(:role,"admin")</code></p></li>
+<li><p><a href="http://code.google.com/p/wkhtmltopdf/">Download and install wkhtmltopdf</a> and place the binary at <code>/usr/local/bin</code> — this is needed to allow downloading of PDFs from the application.</p></li>
+<li><p>Fire up the development server via <code>rails s</code> and visit <a href="http://localhost:3000">http://localhost:3000</a></p></li>
+</ol><h2>License</h2>
+
+<p>zbar_mike is Copyright (c) 2011 <a href="http://www.bsodmike.com">Michael de Silva</a> (<a href="https://twitter.com/#!/bsodmike">@bsodmike</a> &amp; <a href="https://plus.google.com/102197309611185157885/posts">G+</a>), and is released under MIT-LICENSE.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Zahl-bar maintained by <a href="https://github.com/bsodmike">bsodmike</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
